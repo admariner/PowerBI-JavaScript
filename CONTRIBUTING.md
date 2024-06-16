@@ -81,11 +81,6 @@ npm run gulp -- build:docs
 ```
 > There are errors during the TypeDoc compilation step due to some complication with modules however the documentation should still be generated. It's not clear if these are fixable by including more src files in the gulp task or if it's just the nature of TypeDoc lacking capabilities for this project structure.
 
-If the docs are correct then you may publish them to gh-pages using this command
-```
-npm run gulp -- ghpages
-```
-
 ## Known issues
 Running demo fails with an error ERR_INVALID_REDIRECT
 This happens due to version 10 of http-server. To solve the problem, please install http-server@0.9.0 globally using:
