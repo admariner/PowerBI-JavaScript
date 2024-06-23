@@ -62,11 +62,6 @@ gulp.task('nojekyll', 'Add .nojekyll file to docs directory', function (done) {
   });
 });
 
-gulp.task('watch', 'Watches for changes', ['lint'], function () {
-  gulp.watch(['./src/**/*.ts', './test/**/*.ts'], ['lint:ts']);
-  gulp.watch(['./test/**/*.ts'], ['test']);
-});
-
 gulp.task('lint', 'Lints all files', function (done) {
   runSequence(
     'lint:ts',
