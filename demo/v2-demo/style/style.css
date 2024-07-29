@@ -189,7 +189,7 @@ a:hover, a:visited, a:link, a:active
     padding-top: 12px;
 }
 
-#main-docs, #main-showcases {
+#main-docs {
     margin-right: 0px;
 }
 
@@ -370,7 +370,7 @@ a:hover, a:visited, a:link, a:active
     font-weight: normal;
 }
 
-.newSample, .newShowcase {
+.newSample {
     height: 16px;
     width: 40px;
     background-color: #F2C811;
@@ -640,7 +640,7 @@ a:hover, a:visited, a:link, a:active
     cursor: default;
 }
 
-.desktop-view iframe, .mobile-view iframe, #showcase-embedded-view iframe, #bookmark-embedded-view iframe, #share-bookmark iframe, #themes-embedded-view iframe {
+.desktop-view iframe, .mobile-view iframe, #bookmark-embedded-view iframe, #share-bookmark iframe, #themes-embedded-view iframe {
     border: none;
 }
 
@@ -795,7 +795,7 @@ a:hover, a:visited, a:link, a:active
     top: 16px;
 }
 
-.sampleImg, .showcaseImg {
+.sampleImg {
     position: relative;
     height: 192px;
     background: #FFFFFF;
@@ -805,7 +805,7 @@ a:hover, a:visited, a:link, a:active
     box-shadow: inset 0 -7px 35px -7px rgba(0,0,0,0.12);
 }
 
-.sampleTextButton, .showcaseTextButton {
+.sampleTextButton {
     padding: 16px;
 }
 
@@ -834,14 +834,6 @@ a:hover, a:visited, a:link, a:active
 #samplePaginatedReportImg {
     background-image: url('../images/samplerdlreport.png');
     background-position: top; 
-}
-
-.showcaseIcon {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
 }
 
 #bookmarksIcon {
@@ -1032,63 +1024,8 @@ a:hover, a:visited, a:link, a:active
     transform: rotate(45deg);
 }
 
-.showcaseRadioContainer {
-    display: block;
-    position: relative;
-    padding-left: 26px;
-    margin: 4px 0;
-    cursor: pointer;
-    font-weight: normal;
-    height: 40px;
-    padding: 8px 8px 8px 40px;
-}
-
 .themesRadioContainer {
     height: 50px;
-}
-
-.showcaseRadioContainer input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.showcaseRadioCheckmark {
-    position: absolute;
-    top: 11px;
-    left: 12px;
-    height: 16px;
-    width: 16px;
-    border: none;
-    border-radius: 50%;
-    border-color: #6E6E6E;
-    border-style: solid;
-    border-width: 1px;
-    transition: all 100ms ease;
-    -webkit-transition: all 100ms ease;
-}
-
-.showcaseRadioContainer input:checked ~ .showcaseRadioCheckmark {
-    border-color: #3E65FF;
-}
-
-.showcaseRadioCheckmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.showcaseRadioContainer input:checked ~ .showcaseRadioCheckmark:after {
-    display: block;
-}
-
-.showcaseRadioContainer .showcaseRadioCheckmark:after {
-    top: 3px;
-    left: 3px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #3E65FF;
 }
 
 #bookmarkShare {
@@ -1203,11 +1140,6 @@ a:hover, a:visited, a:link, a:active
     margin-right: 16px;
 }
 
-.showcases-buttons {
-    height: 32px;
-    margin-top: 16px;
-}
-
 .text-small-tab {
   padding-left: 1em;
 }
@@ -1226,25 +1158,9 @@ a:hover, a:visited, a:link, a:active
     border-top: 2px solid transparent;
 }
 
-.tryShowcase {
-    position: relative;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 8pt;
-    margin-left: 3px;
-}
-
 .tryMeText {
     color: #3E65FF;
     margin-left: 1px;
-}
-
-.tryShowcase img {
-    width: 12px;
-    height: 9px;
-    margin: 0 1px;
-    position: relative;
-    bottom: 1px;
 }
 
 .modeTooltip {
@@ -1391,38 +1307,9 @@ a:hover, a:visited, a:link, a:active
     cursor: pointer;
 }
 
-.showcaseTooltipText {
-    font-weight: 600;
-    line-height: 28px;
-    font-size: 20px;
-    color: #FFFFFF;
-    margin-bottom: 8px;
-}
-
-.showcaseTooltipSubText {
-    font-style: normal;
-    font-weight: normal;
-    line-height: 20px;
-    font-size: 14px;
-    color: #FFFFFF;
-}
-
 .tooltipFooter {
     margin-top: 52px;
     height: 32px;
-}
-
-.btnShowcaseTooltip {
-    height: 32px;
-    width: 84px;
-    text-align: center;
-    line-height: 30px;
-    font-weight: 600;
-    float: left;
-    cursor: pointer;
-    transition: background-color .2s;
-    user-select: none;
-    color: #000000;
 }
 
 .yellowBtn {

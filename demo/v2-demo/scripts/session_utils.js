@@ -4,10 +4,6 @@ const dashboardUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Dashboards/Sa
 const tileUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Tiles/SampleTile';
 const qnaUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Datasets/SampleQna';
 const paginatedReportUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Reports/SampleRdlReport';
-const layoutShowcaseReportUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Reports/LayoutDemoReport';
-const insightToActionShowcaseReportUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Reports/InsightToActionReport';
-const themesShowcaseReportUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Reports/ThemesReport';
-const quickVisualCreatorShowcaseReportUrl = 'https://playgroundbe-bck-1.azurewebsites.net/Reports/EmptyReport';
 
 var LastReportSampleUrl = null;
 var ReportRefreshTokenTimer = 0;
@@ -288,26 +284,6 @@ function LoadSampleQnaIntoSession() {
 function LoadSamplePaginatedReportIntoSession() {
     SetSession(SessionKeys.EntityType, EntityType.PaginatedReport);
     return FetchUrlIntoSession(paginatedReportUrl, false /* updateCurrentToken */);
-}
-
-function LoadLayoutShowcaseReportIntoSession() {
-    SetSession(SessionKeys.EntityType, EntityType.Report);
-    return FetchUrlIntoSession(layoutShowcaseReportUrl, false /* updateCurrentToken */);
-}
-
-function LoadInsightToActionShowcaseReportIntoSession() {
-    SetSession(SessionKeys.EntityType, EntityType.Report);
-    return FetchUrlIntoSession(insightToActionShowcaseReportUrl, false /* updateCurrentToken */);
-}
-
-function LoadThemesShowcaseReportIntoSession() {
-    SetSession(SessionKeys.EntityType, EntityType.Report);
-    return FetchUrlIntoSession(themesShowcaseReportUrl, false /* updateCurrentToken */);
-}
-
-function LoadQuickVisualCreatorShowcaseReportIntoSession() {
-    SetSession(SessionKeys.EntityType, EntityType.Report);
-    return FetchUrlIntoSession(quickVisualCreatorShowcaseReportUrl, false /* updateCurrentToken */);
 }
 
 function WarmStartSampleReportEmbed() {

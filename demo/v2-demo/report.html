@@ -29,11 +29,13 @@
                 <div class="editorTitleText">Embedded view</div>
             </div>
             <div class="textAreaControls">
-                <button id="btnDesktopView" class="textAreaControl wide active-mode" onclick="elementClicked(this);EmbedAreaDesktopView();">
-                    <img src="images\pc.svg"/> Desktop
+                <button id="btnDesktopView" class="textAreaControl wide active-mode"
+                    onclick="elementClicked(this);EmbedAreaDesktopView();">
+                    <img src="images\pc.svg" /> Desktop
                 </button>
-                <button id="btnPhoneView" class="textAreaControl narrow" onclick="elementClicked(this);EmbedAreaMobileView();">
-                    <img src="images\phone.svg"/> Phone
+                <button id="btnPhoneView" class="textAreaControl narrow"
+                    onclick="elementClicked(this);EmbedAreaMobileView();">
+                    <img src="images\phone.svg" /> Phone
                 </button>
             </div>
             <div class="desktop-view active">
@@ -67,7 +69,7 @@
 </div>
 
 <script>
-$(document).ready(function() {
+$(document).ready(function () {
     $("#samples-step-wrapper").load("step_samples.html");
 
     LoadLogWindow("#logWindow");
@@ -82,20 +84,12 @@ $(document).ready(function() {
     SetSession(SessionKeys.EntityType, entityType);
     SetSession(SessionKeys.EmbedMode, mode);
 
-    let navigateToShowcase = GetParameterByName("showcase");
-    if (navigateToShowcase) {
-        OpenShowcaseFromURL(navigateToShowcase);
-    } else {
-
-        if (GetParameterByName("embedUrl") || GetParameterByName("embedId") || GetParameterByName("accessToken") || GetParameterByName("entityType"))
-        {
-            OpenCodeStep(mode, entityType, GetParameterByName("tokenType") || 0);
-        }
-        else
-        {
-            // Open Select Step after this page loads.
-            OpenSamplesStep();
-        }
+    if (GetParameterByName("embedUrl") || GetParameterByName("embedId") || GetParameterByName("accessToken") || GetParameterByName("entityType")) {
+        OpenCodeStep(mode, entityType, GetParameterByName("tokenType") || 0);
+    }
+    else {
+        // Open Select Step after this page loads.
+        OpenSamplesStep();
     }
 
     Log = InitLogger("txtResponse");

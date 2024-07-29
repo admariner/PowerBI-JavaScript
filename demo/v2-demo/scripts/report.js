@@ -734,9 +734,3 @@ function hideFeaturesOnMobile(){
     if ($(".mobile-view").hasClass(active_class))
         $('.hideOnMobile').hide();
 }
-
-function onShowcaseTryMeClicked(showcase) {
-    let showcaseUrl = location.href.substring(0, location.href.lastIndexOf("/")) + '?showcase=' + showcase;
-    trackEvent(TelemetrySectionName.Showcase, { showcaseType: showcase, src: TelemetryEventSource.Interact });
-    window.open(showcaseUrl, '_blank');
-}

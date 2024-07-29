@@ -22,8 +22,7 @@ const TelemetryInnerSection = {
 
 const TelemetrySectionName = {
     Documentation: "Documentation",
-    SampleTool: "SampleTool",
-    Showcase: "Showcase"
+    SampleTool: "SampleTool"
 };
 
 function trackEvent(name, properties, flush) {
