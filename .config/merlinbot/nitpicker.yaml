@@ -1,0 +1,19 @@
+branches:
+  - name: master
+comments:
+  - markdown: |
+      ## Validation
+      Your changes might be relevant for other embed repositories.
+      Please check out the following [wiki](https://dev.azure.com/powerbi/Embedded/_wiki/wikis/Embedded.wiki/90314/Public-SDKs) to learn which repositories we own and which files are usually unified for all.
+      For any question please contact corembed@microsoft.com
+    id: "CommonFilesValidation"
+    pathFilter:
+      - /.config/**
+      - /.pipelines/**
+      - /.npmrc
+      - /.gitignore
+      - /.eslintrc.js
+      - /.eslintIgnore
+      - /CONTRIBUTING.md
+      - /LICENSE.txt
+      - /owners.txt
