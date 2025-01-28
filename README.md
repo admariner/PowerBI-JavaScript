@@ -13,10 +13,13 @@ JavaScript library for embedding Power BI into your apps.
 See the [wiki](https://github.com/Microsoft/PowerBI-JavaScript/wiki) for more details about embedding, service configuration, setting a default page, page navigation, dynamically applying filters, and more.
 
 ## Code Docs
-See the [code docs](https://microsoft.github.io/PowerBI-JavaScript) for detailed information about classes, interfaces, types, etc.
+See the [code docs](https://learn.microsoft.com/en-us/javascript/api/powerbi/powerbi-client) for detailed information about classes, interfaces, types, etc.
 
-## Demo
-New [live demo](https://microsoft.github.io/PowerBI-JavaScript/demo) for a sample application using the `powerbi-client` library in scenarios such as page navigation, applying filters, updating settings, and more.
+## Sample Application
+For examples of applications utilizing the `powerbi-client` library, please refer to the  available samples in the [PowerBI-Developer-Samples repository](https://github.com/microsoft/PowerBI-Developer-Samples).
+
+## Playground
+To explore and understand the capabilities of embedded analytics in your applications, please visit the [Power BI Embedded Analytics Playground](https://playground.powerbi.com).
 
 ## Installation
 

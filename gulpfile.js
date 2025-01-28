@@ -47,11 +47,6 @@ gulp.task("docs", 'Compile documentation from src code', function () {
     }));
 });
 
-gulp.task('copydemotodocs', 'Copy the demo to the docs', function () {
-  return gulp.src(["demo/**/*"])
-    .pipe(gulp.dest("docs/demo"));
-});
-
 gulp.task('nojekyll', 'Add .nojekyll file to docs directory', function (done) {
   fs.writeFile('./docs/.nojekyll', '', function (error) {
     if (error) {
@@ -96,7 +91,6 @@ gulp.task('build:docs', 'Build docs folder', function (done) {
     'clean:docs',
     'docs',
     'nojekyll',
-    'copydemotodocs',
     done
   );
 });

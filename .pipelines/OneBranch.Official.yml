@@ -159,7 +159,6 @@ extends:
                 **\*
                 !.pipelines\**\*
                 !.vscode\**\*
-                !demo\**\*
                 !dist\**\*
                 !node_modules\**\*
                 !**\out\**\*

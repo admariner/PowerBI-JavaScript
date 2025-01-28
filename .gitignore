@@ -8,6 +8,5 @@ npm-debug.log*
 dist/powerbi.js.map
 *.js.map
 package-lock.json
-demo/package-lock.json
 .vscode
 dist/powerbi.js.LICENSE.min.txt

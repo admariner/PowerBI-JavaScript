@@ -154,7 +154,6 @@ extends:
                 !**\.pipelines\**\*
                 !**\.vscode\**\*
                 !**\test\**\*.*
-                !**\demo\**\*
                 !**\dist\**\*
                 !**\out\**\*
                 !**\*.tgz
