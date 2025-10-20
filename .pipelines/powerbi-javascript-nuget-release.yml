@@ -73,27 +73,28 @@ extends:
             nuGetFeedType: 'internal'
             publishVstsFeed: 'd95dbb95-6687-4730-b306-abe69704b45d' # PowerBI.SDKs
 
-    - stage: Prod_ApprovalToExternalPublish
-      displayName: Approval to external publish
-      trigger: manual
+    - stage: Prod_Approval
+      displayName: Approval Service
       dependsOn: []
       variables:
         ob_release_environment: Production
-        ob_release_usedeploymentjob: true
-        ob_deploymentjob_environment: PBIEmbed
-
       jobs:
-      - job: ApprovalToExternalPublish
-        displayName: Approval to publish the powerbi-javascript NuGet package to external
+      - job: Approval
+        displayName: Wait for Approval
         pool:
-          type: release
-
-        steps:
-        - download: PowerbiJavascriptOfficial
+          type: server
+        variables: # More settings at https://aka.ms/obpipelines/yaml/jobs
+          ob_sdl_binskim_break: true
+          persistCredentials: true
+          ob_sdl_cg_failOnAlert: false
+          ob_sdl_publishLogs_enabled: true
+          ob_release_usedeploymentjob: true
+          ob_deploymentjob_environment: Prod_PowerBIJavascript_Nuget
+          ob_release_environment: production
 
     - stage: Release_External
       displayName: Release NuGet external
-      dependsOn: Prod_ApprovalToExternalPublish
+      dependsOn: [Prod_Approval]
       condition: succeeded()
 
       jobs:
