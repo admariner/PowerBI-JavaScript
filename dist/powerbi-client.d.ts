@@ -1,7 +1,7 @@
-// powerbi-client v2.23.8
+// powerbi-client v2.23.9
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-declare module "src/config" {
+declare module "config" {
     /** @ignore */ /** */
     const config: {
         version: string;
@@ -9,12 +9,12 @@ declare module "src/config" {
     };
     export default config;
 }
-declare module "src/errors" {
+declare module "errors" {
     export const APINotSupportedForRDLError = "This API is currently not supported for RDL reports";
     export const EmbedUrlNotSupported = "Embed URL is invalid for this scenario. Please use Power BI REST APIs to get the valid URL";
     export const invalidEmbedUrlErrorMessage: string;
 }
-declare module "src/util" {
+declare module "util" {
     import { HttpPostMessage } from 'http-post-message';
     /**
      * Raises a custom event with event data on the specified HTML element.
@@ -131,9 +131,9 @@ declare module "src/util" {
      */
     export function validateEmbedUrl(embedUrl: string): boolean;
 }
-declare module "src/embed" {
+declare module "embed" {
     import * as models from 'powerbi-models';
-    import { ICustomEvent, IEvent, IEventHandler, Service } from "src/service";
+    import { ICustomEvent, IEvent, IEventHandler, Service } from "service";
     global {
         interface Document {
             mozCancelFullScreen: any;
@@ -563,7 +563,7 @@ declare module "src/embed" {
         private frontLoadSendConfig;
     }
 }
-declare module "src/ifilterable" {
+declare module "ifilterable" {
     import { FiltersOperations, IFilter } from 'powerbi-models';
     import { IHttpPostMessageResponse } from 'http-post-message';
     /**
@@ -603,11 +603,11 @@ declare module "src/ifilterable" {
         setFilters(filters: IFilter[]): Promise<IHttpPostMessageResponse<void>>;
     }
 }
-declare module "src/visualDescriptor" {
+declare module "visualDescriptor" {
     import { ExportDataType, FiltersOperations, ICloneVisualRequest, ICloneVisualResponse, IExportDataResult, IFilter, ISlicerState, ISmartNarratives, ISortByVisualRequest, IVisualLayout, VisualContainerDisplayMode } from 'powerbi-models';
     import { IHttpPostMessageResponse } from 'http-post-message';
-    import { IFilterable } from "src/ifilterable";
-    import { IPageNode } from "src/page";
+    import { IFilterable } from "ifilterable";
+    import { IPageNode } from "page";
     /**
      * A Visual node within a report hierarchy
      *
@@ -813,12 +813,12 @@ declare module "src/visualDescriptor" {
         getSmartNarrativeInsights(): Promise<ISmartNarratives>;
     }
 }
-declare module "src/page" {
+declare module "page" {
     import { IHttpPostMessageResponse } from 'http-post-message';
     import { DisplayOption, FiltersOperations, ICustomPageSize, IFilter, IVisual, LayoutType, PageSizeType, SectionVisibility, VisualContainerDisplayMode, IPageBackground, IPageWallpaper, ISmartNarratives } from 'powerbi-models';
-    import { IFilterable } from "src/ifilterable";
-    import { IReportNode } from "src/report";
-    import { VisualDescriptor } from "src/visualDescriptor";
+    import { IFilterable } from "ifilterable";
+    import { IReportNode } from "report";
+    import { VisualDescriptor } from "visualDescriptor";
     /**
      * A Page node within a report hierarchy
      *
@@ -1104,14 +1104,14 @@ declare module "src/page" {
         hasLayout(layoutType: LayoutType): Promise<boolean>;
     }
 }
-declare module "src/report" {
+declare module "report" {
     import { IReportLoadConfiguration, IReportEmbedConfiguration, FiltersOperations, IError, IFilter, IReportTheme, ISettings, LayoutType, SectionVisibility, ViewMode, IEmbedConfiguration, IEmbedConfigurationBase, MenuLocation, PageSizeType, VisualContainerDisplayMode } from 'powerbi-models';
     import { IHttpPostMessageResponse } from 'http-post-message';
-    import { IService, Service } from "src/service";
-    import { Embed } from "src/embed";
-    import { IFilterable } from "src/ifilterable";
-    import { Page } from "src/page";
-    import { BookmarksManager } from "src/bookmarksManager";
+    import { IService, Service } from "service";
+    import { Embed } from "embed";
+    import { IFilterable } from "ifilterable";
+    import { Page } from "page";
+    import { BookmarksManager } from "bookmarksManager";
     /**
      * A Report node within a report hierarchy
      *
@@ -1672,10 +1672,10 @@ declare module "src/report" {
         clearSelectedVisuals(clearPopOutState?: boolean): Promise<void>;
     }
 }
-declare module "src/create" {
+declare module "create" {
     import { IReportCreateConfiguration, IError } from 'powerbi-models';
-    import { Service } from "src/service";
-    import { Embed, IEmbedConfigurationBase, IEmbedConfiguration } from "src/embed";
+    import { Service } from "service";
+    import { Embed, IEmbedConfigurationBase, IEmbedConfiguration } from "embed";
     /**
      * A Power BI Report creator component
      *
@@ -1751,10 +1751,10 @@ declare module "src/create" {
         create(): Promise<void>;
     }
 }
-declare module "src/dashboard" {
+declare module "dashboard" {
     import { IError } from 'powerbi-models';
-    import { Service, IService } from "src/service";
-    import { Embed, IEmbedConfigurationBase } from "src/embed";
+    import { Service, IService } from "service";
+    import { Embed, IEmbedConfigurationBase } from "embed";
     /**
      * A Dashboard node within a dashboard hierarchy
      *
@@ -1835,10 +1835,10 @@ declare module "src/dashboard" {
         private validatePageView;
     }
 }
-declare module "src/tile" {
+declare module "tile" {
     import { IError } from 'powerbi-models';
-    import { Service } from "src/service";
-    import { Embed, IEmbedConfigurationBase } from "src/embed";
+    import { Service } from "service";
+    import { Embed, IEmbedConfigurationBase } from "embed";
     /**
      * The Power BI tile embed component
      *
@@ -1888,11 +1888,11 @@ declare module "src/tile" {
         static findIdFromEmbedUrl(url: string): string;
     }
 }
-declare module "src/qna" {
+declare module "qna" {
     import { IHttpPostMessageResponse } from 'http-post-message';
     import { IError } from 'powerbi-models';
-    import { Embed, IEmbedConfigurationBase } from "src/embed";
-    import { Service } from "src/service";
+    import { Embed, IEmbedConfigurationBase } from "embed";
+    import { Service } from "service";
     /**
      * The Power BI Q&A embed component
      *
@@ -1939,13 +1939,13 @@ declare module "src/qna" {
         validate(config: IEmbedConfigurationBase): IError[];
     }
 }
-declare module "src/visual" {
+declare module "visual" {
     import { FiltersLevel, FiltersOperations, IEmbedConfigurationBase, IFilter, IReportEmbedConfiguration, IReportLoadConfiguration } from 'powerbi-models';
     import { IHttpPostMessageResponse } from 'http-post-message';
-    import { Service } from "src/service";
-    import { Report } from "src/report";
-    import { Page } from "src/page";
-    import { VisualDescriptor } from "src/visualDescriptor";
+    import { Service } from "service";
+    import { Report } from "report";
+    import { Page } from "page";
+    import { VisualDescriptor } from "visualDescriptor";
     /**
      * The Power BI Visual embed component
      *
@@ -2074,10 +2074,10 @@ declare module "src/visual" {
         private getFiltersLevelUrl;
     }
 }
-declare module "src/quickCreate" {
+declare module "quickCreate" {
     import { IError, IQuickCreateConfiguration } from 'powerbi-models';
-    import { Service } from "src/service";
-    import { Embed, IEmbedConfigurationBase } from "src/embed";
+    import { Service } from "service";
+    import { Embed, IEmbedConfigurationBase } from "embed";
     /**
      * A Power BI Quick Create component
      *
@@ -2133,12 +2133,12 @@ declare module "src/quickCreate" {
         create(): Promise<void>;
     }
 }
-declare module "src/service" {
+declare module "service" {
     import { WindowPostMessageProxy } from 'window-post-message-proxy';
     import { HttpPostMessage } from 'http-post-message';
     import { Router, IExtendedRequest, Response as IExtendedResponse } from 'powerbi-router';
     import { IQuickCreateConfiguration, IReportCreateConfiguration } from 'powerbi-models';
-    import { Embed, IBootstrapEmbedConfiguration, IDashboardEmbedConfiguration, IEmbedConfiguration, IEmbedConfigurationBase, IQnaEmbedConfiguration, IReportEmbedConfiguration, ITileEmbedConfiguration, IVisualEmbedConfiguration } from "src/embed";
+    import { Embed, IBootstrapEmbedConfiguration, IDashboardEmbedConfiguration, IEmbedConfiguration, IEmbedConfigurationBase, IQnaEmbedConfiguration, IReportEmbedConfiguration, ITileEmbedConfiguration, IVisualEmbedConfiguration } from "embed";
     export interface IEvent<T> {
         type: string;
         id: string;
@@ -2435,11 +2435,11 @@ declare module "src/service" {
         register(componentType: string, embedComponentFactory: EmbedComponentFactory, routerEventUrls: string[]): void;
     }
 }
-declare module "src/bookmarksManager" {
+declare module "bookmarksManager" {
     import { BookmarksPlayMode, ICaptureBookmarkOptions, IReportBookmark } from 'powerbi-models';
     import { IHttpPostMessageResponse } from 'http-post-message';
-    import { Service } from "src/service";
-    import { IEmbedConfigurationBase } from "src/embed";
+    import { Service } from "service";
+    import { IEmbedConfigurationBase } from "embed";
     /**
      * APIs for managing the report bookmarks.
      *
@@ -2529,14 +2529,14 @@ declare module "src/bookmarksManager" {
         applyState(state: string): Promise<IHttpPostMessageResponse<void>>;
     }
 }
-declare module "src/factories" {
-    import { IHpmFactory, IWpmpFactory, IRouterFactory } from "src/service";
+declare module "factories" {
+    import { IHpmFactory, IWpmpFactory, IRouterFactory } from "service";
     export { IHpmFactory, IWpmpFactory, IRouterFactory };
     export const hpmFactory: IHpmFactory;
     export const wpmpFactory: IWpmpFactory;
     export const routerFactory: IRouterFactory;
 }
-declare module "src/FilterBuilders/filterBuilder" {
+declare module "FilterBuilders/filterBuilder" {
     import { IFilterTarget } from "powerbi-models";
     /**
      * Generic filter builder for BasicFilter, AdvancedFilter, RelativeDate, RelativeTime and TopN
@@ -2612,9 +2612,9 @@ declare module "src/FilterBuilders/filterBuilder" {
         withHierarchyLevelAggregationTarget(tableName: string, hierarchy: string, hierarchyLevel: string, aggregationFunction: string): this;
     }
 }
-declare module "src/FilterBuilders/basicFilterBuilder" {
+declare module "FilterBuilders/basicFilterBuilder" {
     import { BasicFilter } from "powerbi-models";
-    import { FilterBuilder } from "src/FilterBuilders/filterBuilder";
+    import { FilterBuilder } from "FilterBuilders/filterBuilder";
     /**
      * Power BI Basic filter builder component
      *
@@ -2683,9 +2683,9 @@ declare module "src/FilterBuilders/basicFilterBuilder" {
         build(): BasicFilter;
     }
 }
-declare module "src/FilterBuilders/advancedFilterBuilder" {
+declare module "FilterBuilders/advancedFilterBuilder" {
     import { AdvancedFilter, AdvancedFilterConditionOperators } from "powerbi-models";
-    import { FilterBuilder } from "src/FilterBuilders/filterBuilder";
+    import { FilterBuilder } from "FilterBuilders/filterBuilder";
     /**
      * Power BI Advanced filter builder component
      *
@@ -2743,9 +2743,9 @@ declare module "src/FilterBuilders/advancedFilterBuilder" {
         build(): AdvancedFilter;
     }
 }
-declare module "src/FilterBuilders/topNFilterBuilder" {
+declare module "FilterBuilders/topNFilterBuilder" {
     import { ITarget, TopNFilter } from "powerbi-models";
-    import { FilterBuilder } from "src/FilterBuilders/filterBuilder";
+    import { FilterBuilder } from "FilterBuilders/filterBuilder";
     /**
      * Power BI Top N filter builder component
      *
@@ -2803,9 +2803,9 @@ declare module "src/FilterBuilders/topNFilterBuilder" {
         build(): TopNFilter;
     }
 }
-declare module "src/FilterBuilders/relativeDateFilterBuilder" {
+declare module "FilterBuilders/relativeDateFilterBuilder" {
     import { RelativeDateFilter, RelativeDateFilterTimeUnit } from "powerbi-models";
-    import { FilterBuilder } from "src/FilterBuilders/filterBuilder";
+    import { FilterBuilder } from "FilterBuilders/filterBuilder";
     /**
      * Power BI Relative Date filter builder component
      *
@@ -2882,9 +2882,9 @@ declare module "src/FilterBuilders/relativeDateFilterBuilder" {
         build(): RelativeDateFilter;
     }
 }
-declare module "src/FilterBuilders/relativeTimeFilterBuilder" {
+declare module "FilterBuilders/relativeTimeFilterBuilder" {
     import { RelativeTimeFilter, RelativeDateFilterTimeUnit } from "powerbi-models";
-    import { FilterBuilder } from "src/FilterBuilders/filterBuilder";
+    import { FilterBuilder } from "FilterBuilders/filterBuilder";
     /**
      * Power BI Relative Time filter builder component
      *
@@ -2948,33 +2948,33 @@ declare module "src/FilterBuilders/relativeTimeFilterBuilder" {
         build(): RelativeTimeFilter;
     }
 }
-declare module "src/FilterBuilders/index" {
-    export { BasicFilterBuilder } from "src/FilterBuilders/basicFilterBuilder";
-    export { AdvancedFilterBuilder } from "src/FilterBuilders/advancedFilterBuilder";
-    export { TopNFilterBuilder } from "src/FilterBuilders/topNFilterBuilder";
-    export { RelativeDateFilterBuilder } from "src/FilterBuilders/relativeDateFilterBuilder";
-    export { RelativeTimeFilterBuilder } from "src/FilterBuilders/relativeTimeFilterBuilder";
+declare module "FilterBuilders/index" {
+    export { BasicFilterBuilder } from "FilterBuilders/basicFilterBuilder";
+    export { AdvancedFilterBuilder } from "FilterBuilders/advancedFilterBuilder";
+    export { TopNFilterBuilder } from "FilterBuilders/topNFilterBuilder";
+    export { RelativeDateFilterBuilder } from "FilterBuilders/relativeDateFilterBuilder";
+    export { RelativeTimeFilterBuilder } from "FilterBuilders/relativeTimeFilterBuilder";
 }
-declare module "src/powerbi-client" {
+declare module "powerbi-client" {
     /**
      * @hidden
      */
     import * as models from 'powerbi-models';
-    import * as service from "src/service";
-    import * as factories from "src/factories";
-    import { IFilterable } from "src/ifilterable";
+    import * as service from "service";
+    import * as factories from "factories";
+    import { IFilterable } from "ifilterable";
     export { IFilterable, service, factories, models };
-    export { Report } from "src/report";
-    export { Dashboard } from "src/dashboard";
-    export { Tile } from "src/tile";
-    export { IEmbedConfiguration, IQnaEmbedConfiguration, IVisualEmbedConfiguration, IReportEmbedConfiguration, IDashboardEmbedConfiguration, ITileEmbedConfiguration, IQuickCreateConfiguration, IReportCreateConfiguration, Embed, ILocaleSettings, IEmbedSettings, IQnaSettings, } from "src/embed";
-    export { Page } from "src/page";
-    export { Qna } from "src/qna";
-    export { Visual } from "src/visual";
-    export { VisualDescriptor } from "src/visualDescriptor";
-    export { QuickCreate } from "src/quickCreate";
-    export { Create } from "src/create";
-    export { BasicFilterBuilder, AdvancedFilterBuilder, TopNFilterBuilder, RelativeDateFilterBuilder, RelativeTimeFilterBuilder } from "src/FilterBuilders/index";
+    export { Report } from "report";
+    export { Dashboard } from "dashboard";
+    export { Tile } from "tile";
+    export { IEmbedConfiguration, IQnaEmbedConfiguration, IVisualEmbedConfiguration, IReportEmbedConfiguration, IDashboardEmbedConfiguration, ITileEmbedConfiguration, IQuickCreateConfiguration, IReportCreateConfiguration, Embed, ILocaleSettings, IEmbedSettings, IQnaSettings, } from "embed";
+    export { Page } from "page";
+    export { Qna } from "qna";
+    export { Visual } from "visual";
+    export { VisualDescriptor } from "visualDescriptor";
+    export { QuickCreate } from "quickCreate";
+    export { Create } from "create";
+    export { BasicFilterBuilder, AdvancedFilterBuilder, TopNFilterBuilder, RelativeDateFilterBuilder, RelativeTimeFilterBuilder } from "FilterBuilders/index";
     global {
         interface Window {
             powerbi: service.Service;
@@ -2982,167 +2982,3 @@ declare module "src/powerbi-client" {
         }
     }
 }
-declare module "test/utility/mockApp" {
-    import * as models from 'powerbi-models';
-    export interface IApp {
-        dashboardLoad(config: models.IDashboardLoadConfiguration): Promise<void>;
-        validateDashboardLoad(config: models.IDashboardLoadConfiguration): Promise<models.IError[]>;
-        reportLoad(config: models.IReportLoadConfiguration): Promise<void>;
-        validateReportLoad(config: models.IReportLoadConfiguration): Promise<models.IError[]>;
-        render(): Promise<void>;
-        updateSettings(settings: models.ISettings): Promise<void>;
-        validateSettings(settigns: models.ISettings): Promise<models.IError[]>;
-        addContextMenuCommand(commandName: string, commandTitle: string, contextMenuTitle: string, menuLocation?: string, visualName?: string, visualType?: string, groupName?: string): Promise<void>;
-        addOptionsMenuCommand(commandName: string, commandTitle: string, optionsMenuTitle: string, menuLocation?: string, visualName?: string, visualType?: string, groupName?: string, commandIcon?: string): Promise<void>;
-        removeContextMenuCommand(commandName: string): Promise<void>;
-        removeOptionsMenuCommand(commandName: string): Promise<void>;
-        setVisualDisplayState(pageName: string, visualName: string, displayState: models.VisualContainerDisplayMode): Promise<void>;
-        resizeVisual(pageName: string, visualName: string, width: number, height: number): Promise<void>;
-        resizeActivePage(pageSizeType: models.PageSizeType, width: number, height: number): Promise<void>;
-        moveVisual(pageName: string, visualName: string, x: number, y: number, z?: number): Promise<void>;
-        getPages(): Promise<models.IPage>;
-        getPageByName(pageName: string): Promise<models.IPage>;
-        getActivePage(): Promise<models.IPage>;
-        setPage(pageName: string): Promise<void>;
-        validatePage(page: models.IPage): Promise<models.IError[]>;
-        validateVisual(page: models.IPage, visual: models.IVisual): Promise<models.IError[]>;
-        getVisualByName(visualName: string): Promise<models.IVisual>;
-        getFilters(): Promise<models.IFilter[]>;
-        updateFilters(operation: models.FiltersOperations, filters: models.IFilter[]): Promise<models.IFilter[]>;
-        setFilters(filters: models.IFilter[]): Promise<void>;
-        validateFilter(filter: models.IFilter): Promise<models.IError[]>;
-        print(): Promise<void>;
-        refreshData(): Promise<void>;
-        exportData(): Promise<void>;
-        validateCreateReport(config: models.IReportCreateConfiguration): Promise<models.IError[]>;
-        validateQuickCreate(config: models.IQuickCreateConfiguration): Promise<models.IError[]>;
-        switchMode(): Promise<void>;
-        save(): Promise<void>;
-        saveAs(saveAsParameters: models.ISaveAsParameters): Promise<void>;
-        setAccessToken(accessToken: string): Promise<void>;
-        switchLayout(layoutType: models.LayoutType): Promise<void>;
-    }
-    export const mockAppSpyObj: {
-        dashboardLoad: jasmine.Spy<jasmine.Func>;
-        validateDashboardLoad: jasmine.Spy<jasmine.Func>;
-        reportLoad: jasmine.Spy<jasmine.Func>;
-        validateReportLoad: jasmine.Spy<jasmine.Func>;
-        render: jasmine.Spy<jasmine.Func>;
-        updateSettings: jasmine.Spy<jasmine.Func>;
-        validateSettings: jasmine.Spy<jasmine.Func>;
-        addContextMenuCommand: jasmine.Spy<jasmine.Func>;
-        addOptionsMenuCommand: jasmine.Spy<jasmine.Func>;
-        removeContextMenuCommand: jasmine.Spy<jasmine.Func>;
-        removeOptionsMenuCommand: jasmine.Spy<jasmine.Func>;
-        setVisualDisplayState: jasmine.Spy<jasmine.Func>;
-        resizeVisual: jasmine.Spy<jasmine.Func>;
-        resizeActivePage: jasmine.Spy<jasmine.Func>;
-        moveVisual: jasmine.Spy<jasmine.Func>;
-        getPages: jasmine.Spy<jasmine.Func>;
-        getPageByName: jasmine.Spy<jasmine.Func>;
-        getActivePage: jasmine.Spy<jasmine.Func>;
-        setPage: jasmine.Spy<jasmine.Func>;
-        validatePage: jasmine.Spy<jasmine.Func>;
-        validateVisual: jasmine.Spy<jasmine.Func>;
-        getVisualByName: jasmine.Spy<jasmine.Func>;
-        getFilters: jasmine.Spy<jasmine.Func>;
-        updateFilters: jasmine.Spy<jasmine.Func>;
-        setFilters: jasmine.Spy<jasmine.Func>;
-        validateFilter: jasmine.Spy<jasmine.Func>;
-        print: jasmine.Spy<jasmine.Func>;
-        refreshData: jasmine.Spy<jasmine.Func>;
-        exportData: jasmine.Spy<jasmine.Func>;
-        validateCreateReport: jasmine.Spy<jasmine.Func>;
-        validateQuickCreate: jasmine.Spy<jasmine.Func>;
-        switchMode: jasmine.Spy<jasmine.Func>;
-        save: jasmine.Spy<jasmine.Func>;
-        saveAs: jasmine.Spy<jasmine.Func>;
-        setAccessToken: jasmine.Spy<jasmine.Func>;
-        switchLayout: jasmine.Spy<jasmine.Func>;
-        reset(): void;
-    };
-    export const mockApp: IApp;
-}
-declare module "test/utility/mockEmbed" {
-    import { HttpPostMessage } from 'http-post-message';
-    export const spyApp: {
-        dashboardLoad: jasmine.Spy<jasmine.Func>;
-        validateDashboardLoad: jasmine.Spy<jasmine.Func>;
-        reportLoad: jasmine.Spy<jasmine.Func>;
-        validateReportLoad: jasmine.Spy<jasmine.Func>;
-        render: jasmine.Spy<jasmine.Func>;
-        updateSettings: jasmine.Spy<jasmine.Func>;
-        /**
-         * Report Embed
-         */
-        validateSettings: jasmine.Spy<jasmine.Func>;
-        addContextMenuCommand: jasmine.Spy<jasmine.Func>;
-        addOptionsMenuCommand: jasmine.Spy<jasmine.Func>;
-        removeContextMenuCommand: jasmine.Spy<jasmine.Func>;
-        removeOptionsMenuCommand: jasmine.Spy<jasmine.Func>;
-        setVisualDisplayState: jasmine.Spy<jasmine.Func>;
-        resizeVisual: jasmine.Spy<jasmine.Func>;
-        resizeActivePage: jasmine.Spy<jasmine.Func>;
-        moveVisual: jasmine.Spy<jasmine.Func>;
-        getPages: jasmine.Spy<jasmine.Func>;
-        getPageByName: jasmine.Spy<jasmine.Func>;
-        getActivePage: jasmine.Spy<jasmine.Func>;
-        setPage: jasmine.Spy<jasmine.Func>;
-        validatePage: jasmine.Spy<jasmine.Func>;
-        validateVisual: jasmine.Spy<jasmine.Func>;
-        getVisualByName: jasmine.Spy<jasmine.Func>;
-        getFilters: jasmine.Spy<jasmine.Func>;
-        updateFilters: jasmine.Spy<jasmine.Func>;
-        setFilters: jasmine.Spy<jasmine.Func>;
-        validateFilter: jasmine.Spy<jasmine.Func>;
-        print: jasmine.Spy<jasmine.Func>;
-        refreshData: jasmine.Spy<jasmine.Func>;
-        exportData: jasmine.Spy<jasmine.Func>;
-        validateCreateReport: jasmine.Spy<jasmine.Func>;
-        validateQuickCreate: jasmine.Spy<jasmine.Func>;
-        switchMode: jasmine.Spy<jasmine.Func>;
-        save: jasmine.Spy<jasmine.Func>;
-        saveAs: jasmine.Spy<jasmine.Func>;
-        setAccessToken: jasmine.Spy<jasmine.Func>;
-        switchLayout: jasmine.Spy<jasmine.Func>;
-        reset(): void;
-    };
-    export function setupEmbedMockApp(iframeContentWindow: Window, parentWindow: Window, name?: string): HttpPostMessage;
-}
-declare module "test/utility/mockHpm" {
-    export const spyHpm: {
-        get: jasmine.Spy<jasmine.Func>;
-        post: jasmine.Spy<jasmine.Func>;
-        patch: jasmine.Spy<jasmine.Func>;
-        put: jasmine.Spy<jasmine.Func>;
-        delete: jasmine.Spy<jasmine.Func>;
-    };
-}
-declare module "test/utility/mockRouter" {
-    export const spyRouter: {
-        get: jasmine.Spy<jasmine.Func>;
-        post: jasmine.Spy<jasmine.Func>;
-        patch: jasmine.Spy<jasmine.Func>;
-        put: jasmine.Spy<jasmine.Func>;
-        delete: jasmine.Spy<jasmine.Func>;
-    };
-}
-declare module "test/constsants" {
-    global {
-        interface Window {
-            __karma__: any;
-        }
-    }
-    export const iframeSrc = "base/test/utility/noop.html";
-}
-declare module "test/SDK-to-HPM.spec" { }
-declare module "test/SDK-to-MockApp.spec" { }
-declare module "test/utility/mockWpmp" {
-    export const spyWpmp: any;
-}
-declare module "test/SDK-to-WPMP.spec" { }
-declare module "test/filterBuilders.spec" { }
-declare module "test/protocol.spec" { }
-declare module "test/service.spec" { }
-declare module "test/test.spec" { }
-declare module "test/util.spec" { }

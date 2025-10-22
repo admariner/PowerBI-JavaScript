@@ -2,15 +2,13 @@
   "compilerOptions": {
     "target": "es5",
     "noImplicitAny": false,
-    "sourceMap": true,
-    "noImplicitUseStrict": true,
-    "outDir": "dist"
+    "sourceMap": true
   },
+  "include": ["src/**/*.ts", "test/**/*.ts"],
   "exclude": [
     "node_modules",
     "dist",
     "docs",
-    "test",
     "tmp",
     ".publish"
   ]
