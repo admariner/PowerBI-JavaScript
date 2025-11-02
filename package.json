@@ -82,9 +82,6 @@
     "powerbi-router": "^0.1",
     "window-post-message-proxy": "^0.2.7"
   },
-  "publishConfig": {
-    "tag": "beta"
-  },
   "overrides": {
     "glob-parent": "^6.0.2",
     "micromatch": "^4.0.5",
