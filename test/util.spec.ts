@@ -11,6 +11,7 @@ describe('util', function () {
     "https://daily.powerbi.com",
     "https://app.powerbi.cn",
     "https://app.powerbigov.us/",
+    "https://app.canaryhigh.powerbigov.us",
     "https://app.powerbigov.us/reportEmbed?someQueryParam=x",
     "https://msit.fabric.microsoft.com/groups/someGroup/reports/",
     "HTTPS://APP.powErbi.com",
