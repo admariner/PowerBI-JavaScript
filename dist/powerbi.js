@@ -1,4 +1,4 @@
-// powerbi-client v2.23.9
+// powerbi-client v2.23.10
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -14,195 +14,23 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/http-post-message/dist/httpPostMessage.js":
+/***/ "./node_modules/http-post-message/dist/httpPostMessage.js"
 /*!****************************************************************!*\
   !*** ./node_modules/http-post-message/dist/httpPostMessage.js ***!
   \****************************************************************/
-/***/ (function(module) {
+(module) {
 
-/*! http-post-message v0.2.3 | (c) 2016 Microsoft Corporation MIT */
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(true)
-		module.exports = factory();
-	else // removed by dead control flow
-{}
-})(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __nested_webpack_require_626__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-/******/
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_626__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__nested_webpack_require_626__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__nested_webpack_require_626__.c = installedModules;
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__nested_webpack_require_626__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __nested_webpack_require_626__(0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ function(module, exports) {
-
-	"use strict";
-	var HttpPostMessage = (function () {
-	    function HttpPostMessage(windowPostMessageProxy, defaultHeaders, defaultTargetWindow) {
-	        if (defaultHeaders === void 0) { defaultHeaders = {}; }
-	        this.defaultHeaders = defaultHeaders;
-	        this.defaultTargetWindow = defaultTargetWindow;
-	        this.windowPostMessageProxy = windowPostMessageProxy;
-	    }
-	    // TODO: See if it's possible to share tracking properties interface?
-	    // The responsibility of knowing how to configure windowPostMessageProxy for http should
-	    // live in this http class, but the configuration would need ITrackingProperties
-	    // interface which lives in WindowPostMessageProxy. Use <any> type as workaround
-	    HttpPostMessage.addTrackingProperties = function (message, trackingProperties) {
-	        message.headers = message.headers || {};
-	        if (trackingProperties && trackingProperties.id) {
-	            message.headers.id = trackingProperties.id;
-	        }
-	        return message;
-	    };
-	    HttpPostMessage.getTrackingProperties = function (message) {
-	        return {
-	            id: message.headers && message.headers.id
-	        };
-	    };
-	    HttpPostMessage.isErrorMessage = function (message) {
-	        if (typeof (message && message.statusCode) !== 'number') {
-	            return false;
-	        }
-	        return !(200 <= message.statusCode && message.statusCode < 300);
-	    };
-	    HttpPostMessage.prototype.get = function (url, headers, targetWindow) {
-	        if (headers === void 0) { headers = {}; }
-	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
-	        return this.send({
-	            method: "GET",
-	            url: url,
-	            headers: headers
-	        }, targetWindow);
-	    };
-	    HttpPostMessage.prototype.post = function (url, body, headers, targetWindow) {
-	        if (headers === void 0) { headers = {}; }
-	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
-	        return this.send({
-	            method: "POST",
-	            url: url,
-	            headers: headers,
-	            body: body
-	        }, targetWindow);
-	    };
-	    HttpPostMessage.prototype.put = function (url, body, headers, targetWindow) {
-	        if (headers === void 0) { headers = {}; }
-	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
-	        return this.send({
-	            method: "PUT",
-	            url: url,
-	            headers: headers,
-	            body: body
-	        }, targetWindow);
-	    };
-	    HttpPostMessage.prototype.patch = function (url, body, headers, targetWindow) {
-	        if (headers === void 0) { headers = {}; }
-	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
-	        return this.send({
-	            method: "PATCH",
-	            url: url,
-	            headers: headers,
-	            body: body
-	        }, targetWindow);
-	    };
-	    HttpPostMessage.prototype.delete = function (url, body, headers, targetWindow) {
-	        if (body === void 0) { body = null; }
-	        if (headers === void 0) { headers = {}; }
-	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
-	        return this.send({
-	            method: "DELETE",
-	            url: url,
-	            headers: headers,
-	            body: body
-	        }, targetWindow);
-	    };
-	    HttpPostMessage.prototype.send = function (request, targetWindow) {
-	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
-	        request.headers = this.assign({}, this.defaultHeaders, request.headers);
-	        if (!targetWindow) {
-	            throw new Error("target window is not provided.  You must either provide the target window explicitly as argument to request, or specify default target window when constructing instance of this class.");
-	        }
-	        return this.windowPostMessageProxy.postMessage(targetWindow, request);
-	    };
-	    /**
-	     * Object.assign() polyfill
-	     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-	     */
-	    HttpPostMessage.prototype.assign = function (target) {
-	        var sources = [];
-	        for (var _i = 1; _i < arguments.length; _i++) {
-	            sources[_i - 1] = arguments[_i];
-	        }
-	        if (target === undefined || target === null) {
-	            throw new TypeError('Cannot convert undefined or null to object');
-	        }
-	        var output = Object(target);
-	        sources.forEach(function (source) {
-	            if (source !== undefined && source !== null) {
-	                for (var nextKey in source) {
-	                    if (Object.prototype.hasOwnProperty.call(source, nextKey)) {
-	                        output[nextKey] = source[nextKey];
-	                    }
-	                }
-	            }
-	        });
-	        return output;
-	    };
-	    return HttpPostMessage;
-	}());
-	exports.HttpPostMessage = HttpPostMessage;
-
-
-/***/ }
-/******/ ])
-});
-;
+/*! For license information please see httpPostMessage.js.LICENSE.txt */
+!function(e,t){ true?module.exports=t():0}(self,(()=>(()=>{"use strict";var e={};return(()=>{var t=e;Object.defineProperty(t,"__esModule",{value:!0}),t.HttpPostMessage=void 0;var o=function(){function e(e,t,o,r){void 0===t&&(t={}),this.defaultHeaders=t,this.defaultTargetWindow=o,this.defaultTargetOrigin=r,this.windowPostMessageProxy=e}return e.addTrackingProperties=function(e,t){return e.headers=e.headers||{},t&&t.id&&(e.headers.id=t.id),e},e.getTrackingProperties=function(e){return{id:e.headers&&e.headers.id}},e.isErrorMessage=function(e){return"number"==typeof(e&&e.statusCode)&&!(200<=e.statusCode&&e.statusCode<300)},e.prototype.get=function(e,t,o,r){return void 0===t&&(t={}),void 0===o&&(o=this.defaultTargetWindow),this.send({method:"GET",url:e,headers:t},o,r)},e.prototype.post=function(e,t,o,r,s){return void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"POST",url:e,headers:o,body:t},r,s)},e.prototype.put=function(e,t,o,r,s){return void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"PUT",url:e,headers:o,body:t},r,s)},e.prototype.patch=function(e,t,o,r,s){return void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"PATCH",url:e,headers:o,body:t},r,s)},e.prototype.delete=function(e,t,o,r,s){return void 0===t&&(t=null),void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"DELETE",url:e,headers:o,body:t},r,s)},e.prototype.send=function(e,t,o){if(void 0===t&&(t=this.defaultTargetWindow),void 0===o&&(o=this.defaultTargetOrigin),e.headers=this.assign({},this.defaultHeaders,e.headers),!t)throw new Error("target window is not provided.  You must either provide the target window explicitly as argument to request, or specify default target window when constructing instance of this class.");return void 0===o?this.windowPostMessageProxy.postMessage(t,e):this.windowPostMessageProxy.postMessage(t,e,o)},e.prototype.assign=function(e){for(var t=[],o=1;o<arguments.length;o++)t[o-1]=arguments[o];if(null==e)throw new TypeError("Cannot convert undefined or null to object");var r=Object(e);return t.forEach((function(e){if(null!=e)for(var t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[t]=e[t])})),r},e}();t.HttpPostMessage=o})(),e})()));
 //# sourceMappingURL=httpPostMessage.js.map
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/powerbi-models/dist/models.js":
+/***/ "./node_modules/powerbi-models/dist/models.js"
 /*!****************************************************!*\
   !*** ./node_modules/powerbi-models/dist/models.js ***!
   \****************************************************/
-/***/ (function(module) {
+(module) {
 
 // powerbi-models v2.0.1
 // Copyright (c) Microsoft Corporation.
@@ -1155,44 +983,44 @@ exports.validatePrintSettings = validatePrintSettings;
 
 /***/ }),
 /* 1 */
-/***/ ((__unused_webpack_module, exports, __nested_webpack_require_47328__) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Validators = void 0;
-var barsValidator_1 = __nested_webpack_require_47328__(2);
-var bookmarkValidator_1 = __nested_webpack_require_47328__(5);
-var commandsSettingsValidator_1 = __nested_webpack_require_47328__(6);
-var customThemeValidator_1 = __nested_webpack_require_47328__(7);
-var dashboardLoadValidator_1 = __nested_webpack_require_47328__(8);
-var datasetBindingValidator_1 = __nested_webpack_require_47328__(9);
-var exportDataValidator_1 = __nested_webpack_require_47328__(10);
-var extensionsValidator_1 = __nested_webpack_require_47328__(11);
-var filtersValidator_1 = __nested_webpack_require_47328__(12);
-var layoutValidator_1 = __nested_webpack_require_47328__(13);
-var pageValidator_1 = __nested_webpack_require_47328__(14);
-var panesValidator_1 = __nested_webpack_require_47328__(15);
-var qnaValidator_1 = __nested_webpack_require_47328__(16);
-var reportCreateValidator_1 = __nested_webpack_require_47328__(17);
-var reportLoadValidator_1 = __nested_webpack_require_47328__(18);
-var paginatedReportLoadValidator_1 = __nested_webpack_require_47328__(19);
-var saveAsParametersValidator_1 = __nested_webpack_require_47328__(20);
-var selectorsValidator_1 = __nested_webpack_require_47328__(21);
-var settingsValidator_1 = __nested_webpack_require_47328__(22);
-var slicersValidator_1 = __nested_webpack_require_47328__(23);
-var tileLoadValidator_1 = __nested_webpack_require_47328__(24);
-var visualSettingsValidator_1 = __nested_webpack_require_47328__(25);
-var anyOfValidator_1 = __nested_webpack_require_47328__(26);
-var fieldForbiddenValidator_1 = __nested_webpack_require_47328__(27);
-var fieldRequiredValidator_1 = __nested_webpack_require_47328__(28);
-var mapValidator_1 = __nested_webpack_require_47328__(29);
-var typeValidator_1 = __nested_webpack_require_47328__(4);
-var parameterPanelValidator_1 = __nested_webpack_require_47328__(30);
-var datasetCreateConfigValidator_1 = __nested_webpack_require_47328__(31);
-var quickCreateValidator_1 = __nested_webpack_require_47328__(32);
-var printSettingsValidator_1 = __nested_webpack_require_47328__(33);
-var paginatedReportDatasetBindingValidator_1 = __nested_webpack_require_47328__(34);
+var barsValidator_1 = __webpack_require__(2);
+var bookmarkValidator_1 = __webpack_require__(5);
+var commandsSettingsValidator_1 = __webpack_require__(6);
+var customThemeValidator_1 = __webpack_require__(7);
+var dashboardLoadValidator_1 = __webpack_require__(8);
+var datasetBindingValidator_1 = __webpack_require__(9);
+var exportDataValidator_1 = __webpack_require__(10);
+var extensionsValidator_1 = __webpack_require__(11);
+var filtersValidator_1 = __webpack_require__(12);
+var layoutValidator_1 = __webpack_require__(13);
+var pageValidator_1 = __webpack_require__(14);
+var panesValidator_1 = __webpack_require__(15);
+var qnaValidator_1 = __webpack_require__(16);
+var reportCreateValidator_1 = __webpack_require__(17);
+var reportLoadValidator_1 = __webpack_require__(18);
+var paginatedReportLoadValidator_1 = __webpack_require__(19);
+var saveAsParametersValidator_1 = __webpack_require__(20);
+var selectorsValidator_1 = __webpack_require__(21);
+var settingsValidator_1 = __webpack_require__(22);
+var slicersValidator_1 = __webpack_require__(23);
+var tileLoadValidator_1 = __webpack_require__(24);
+var visualSettingsValidator_1 = __webpack_require__(25);
+var anyOfValidator_1 = __webpack_require__(26);
+var fieldForbiddenValidator_1 = __webpack_require__(27);
+var fieldRequiredValidator_1 = __webpack_require__(28);
+var mapValidator_1 = __webpack_require__(29);
+var typeValidator_1 = __webpack_require__(4);
+var parameterPanelValidator_1 = __webpack_require__(30);
+var datasetCreateConfigValidator_1 = __webpack_require__(31);
+var quickCreateValidator_1 = __webpack_require__(32);
+var printSettingsValidator_1 = __webpack_require__(33);
+var paginatedReportDatasetBindingValidator_1 = __webpack_require__(34);
 exports.Validators = {
     addBookmarkRequestValidator: new bookmarkValidator_1.AddBookmarkRequestValidator(),
     advancedFilterTypeValidator: new typeValidator_1.EnumValidator([0]),
@@ -5693,13 +5521,13 @@ exports.PaginatedReportDatasetBindingValidator = PaginatedReportDatasetBindingVa
 });
 //# sourceMappingURL=models.js.map
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/powerbi-router/dist/router.js":
+/***/ "./node_modules/powerbi-router/dist/router.js"
 /*!****************************************************!*\
   !*** ./node_modules/powerbi-router/dist/router.js ***!
   \****************************************************/
-/***/ (function(module) {
+(module) {
 
 /*! powerbi-router v0.1.5 | (c) 2016 Microsoft Corporation MIT */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -6516,25 +6344,13 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 //# sourceMappingURL=router.js.map
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js ***!
-  \*******************************************************************************/
-/***/ ((module) => {
-
-/*! For license information please see windowPostMessageProxy.js.LICENSE.txt */
-!function(e,r){ true?module.exports=r():0}(self,(()=>(()=>{"use strict";var e={};return(()=>{var r=e;Object.defineProperty(r,"__esModule",{value:!0}),r.WindowPostMessageProxy=void 0;var s=function(){function e(r){void 0===r&&(r={processTrackingProperties:{addTrackingProperties:e.defaultAddTrackingProperties,getTrackingProperties:e.defaultGetTrackingProperties},isErrorMessage:e.defaultIsErrorMessage,receiveWindow:window,name:e.createRandomString()});var s=this;this.pendingRequestPromises={},this.addTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.addTrackingProperties||e.defaultAddTrackingProperties,this.getTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.getTrackingProperties||e.defaultGetTrackingProperties,this.isErrorMessage=r.isErrorMessage||e.defaultIsErrorMessage,this.receiveWindow=r.receiveWindow||window,this.name=r.name||e.createRandomString(),this.logMessages=r.logMessages||!1,this.eventSourceOverrideWindow=r.eventSourceOverrideWindow,this.suppressWarnings=r.suppressWarnings||!1,this.logMessages&&console.log("new WindowPostMessageProxy created with name: ".concat(this.name," receiving on window: ").concat(this.receiveWindow.document.title)),this.handlers=[],this.windowMessageHandler=function(e){return s.onMessageReceived(e)},this.start()}return e.defaultAddTrackingProperties=function(r,s){return r[e.messagePropertyName]=s,r},e.defaultGetTrackingProperties=function(r){return r[e.messagePropertyName]},e.defaultIsErrorMessage=function(e){return!!e.error},e.createDeferred=function(){var e={resolve:null,reject:null,promise:null},r=new Promise((function(r,s){e.resolve=r,e.reject=s}));return e.promise=r,e},e.createRandomString=function(){var e=window.crypto||window.msCrypto,r=new Uint32Array(1);return e.getRandomValues(r),r[0].toString(36).substring(1)},e.prototype.addHandler=function(e){this.handlers.push(e)},e.prototype.removeHandler=function(e){var r=this.handlers.indexOf(e);if(-1===r)throw new Error("You attempted to remove a handler but no matching handler was found.");this.handlers.splice(r,1)},e.prototype.start=function(){this.receiveWindow.addEventListener("message",this.windowMessageHandler)},e.prototype.stop=function(){this.receiveWindow.removeEventListener("message",this.windowMessageHandler)},e.prototype.postMessage=function(r,s){var n={id:e.createRandomString()};this.addTrackingProperties(s,n),this.logMessages&&(console.log("".concat(this.name," Posting message:")),console.log(JSON.stringify(s,null,"  "))),r.postMessage(s,"*");var o=e.createDeferred();return this.pendingRequestPromises[n.id]=o,o.promise},e.prototype.sendResponse=function(e,r,s){this.addTrackingProperties(r,s),this.logMessages&&(console.log("".concat(this.name," Sending response:")),console.log(JSON.stringify(r,null,"  "))),e.postMessage(r,"*")},e.prototype.onMessageReceived=function(e){var r=this;this.logMessages&&(console.log("".concat(this.name," Received message:")),console.log("type: ".concat(e.type)),console.log(JSON.stringify(e.data,null,"  ")));var s=this.eventSourceOverrideWindow||e.source;if(s){var n=e.data;if("object"==typeof n){var o,t;try{o=this.getTrackingProperties(n)}catch(e){this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Error occurred when attempting to get tracking properties from incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(o&&(t=this.pendingRequestPromises[o.id]),t){var i=!0;try{i=this.isErrorMessage(n)}catch(e){console.warn("Proxy(".concat(this.name,") Error occurred when trying to determine if message is consider an error response. Message: "),JSON.stringify(n,null,""),"Error: ",e)}i?t.reject(n):t.resolve(n),delete this.pendingRequestPromises[o.id]}else this.handlers.some((function(e){var t=!1;try{t=e.test(n)}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was testing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(t){var i=void 0;try{i=Promise.resolve(e.handle(n))}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was processing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e),i=Promise.resolve()}return i.then((function(e){if(!e){var t="Handler for message: ".concat(JSON.stringify(n,null,"  ")," did not return a response message. The default response message will be returned instead.");r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): ").concat(t)),e={warning:t}}r.sendResponse(s,e,o)})),!0}}))||this.suppressWarnings||console.warn("Proxy(".concat(this.name,") did not handle message. Handlers: ").concat(this.handlers.length,"  Message: ").concat(JSON.stringify(n,null,""),"."))}else this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message that was not an object. Discarding message"))}},e.messagePropertyName="windowPostMessageProxy",e}();r.WindowPostMessageProxy=s})(),e})()));
-//# sourceMappingURL=windowPostMessageProxy.js.map
-
-/***/ }),
-
-/***/ "./src/FilterBuilders/advancedFilterBuilder.ts":
+/***/ "./src/FilterBuilders/advancedFilterBuilder.ts"
 /*!*****************************************************!*\
   !*** ./src/FilterBuilders/advancedFilterBuilder.ts ***!
   \*****************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -6637,13 +6453,13 @@ var AdvancedFilterBuilder = /** @class */ (function (_super) {
 exports.AdvancedFilterBuilder = AdvancedFilterBuilder;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/FilterBuilders/basicFilterBuilder.ts":
+/***/ "./src/FilterBuilders/basicFilterBuilder.ts"
 /*!**************************************************!*\
   !*** ./src/FilterBuilders/basicFilterBuilder.ts ***!
   \**************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -6760,13 +6576,13 @@ var BasicFilterBuilder = /** @class */ (function (_super) {
 exports.BasicFilterBuilder = BasicFilterBuilder;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/FilterBuilders/filterBuilder.ts":
+/***/ "./src/FilterBuilders/filterBuilder.ts"
 /*!*********************************************!*\
   !*** ./src/FilterBuilders/filterBuilder.ts ***!
   \*********************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -6868,13 +6684,13 @@ var FilterBuilder = /** @class */ (function () {
 exports.FilterBuilder = FilterBuilder;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/FilterBuilders/index.ts":
+/***/ "./src/FilterBuilders/index.ts"
 /*!*************************************!*\
   !*** ./src/FilterBuilders/index.ts ***!
   \*************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -6892,13 +6708,13 @@ var relativeTimeFilterBuilder_1 = __webpack_require__(/*! ./relativeTimeFilterBu
 Object.defineProperty(exports, "RelativeTimeFilterBuilder", ({ enumerable: true, get: function () { return relativeTimeFilterBuilder_1.RelativeTimeFilterBuilder; } }));
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/FilterBuilders/relativeDateFilterBuilder.ts":
+/***/ "./src/FilterBuilders/relativeDateFilterBuilder.ts"
 /*!*********************************************************!*\
   !*** ./src/FilterBuilders/relativeDateFilterBuilder.ts ***!
   \*********************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7023,13 +6839,13 @@ var RelativeDateFilterBuilder = /** @class */ (function (_super) {
 exports.RelativeDateFilterBuilder = RelativeDateFilterBuilder;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/FilterBuilders/relativeTimeFilterBuilder.ts":
+/***/ "./src/FilterBuilders/relativeTimeFilterBuilder.ts"
 /*!*********************************************************!*\
   !*** ./src/FilterBuilders/relativeTimeFilterBuilder.ts ***!
   \*********************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7137,13 +6953,13 @@ var RelativeTimeFilterBuilder = /** @class */ (function (_super) {
 exports.RelativeTimeFilterBuilder = RelativeTimeFilterBuilder;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/FilterBuilders/topNFilterBuilder.ts":
+/***/ "./src/FilterBuilders/topNFilterBuilder.ts"
 /*!*************************************************!*\
   !*** ./src/FilterBuilders/topNFilterBuilder.ts ***!
   \*************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7241,13 +7057,13 @@ var TopNFilterBuilder = /** @class */ (function (_super) {
 exports.TopNFilterBuilder = TopNFilterBuilder;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/bookmarksManager.ts":
+/***/ "./src/bookmarksManager.ts"
 /*!*********************************!*\
   !*** ./src/bookmarksManager.ts ***!
   \*********************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7492,32 +7308,32 @@ var BookmarksManager = /** @class */ (function () {
 exports.BookmarksManager = BookmarksManager;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/config.ts":
+/***/ "./src/config.ts"
 /*!***********************!*\
   !*** ./src/config.ts ***!
   \***********************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 /** @ignore */ /** */
 var config = {
-    version: '2.23.9',
+    version: '2.23.10',
     type: 'js'
 };
 exports["default"] = config;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/create.ts":
+/***/ "./src/create.ts"
 /*!***********************!*\
   !*** ./src/create.ts ***!
   \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7726,13 +7542,13 @@ var Create = /** @class */ (function (_super) {
 exports.Create = Create;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/dashboard.ts":
+/***/ "./src/dashboard.ts"
 /*!**************************!*\
   !*** ./src/dashboard.ts ***!
   \**************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7865,13 +7681,13 @@ var Dashboard = /** @class */ (function (_super) {
 exports.Dashboard = Dashboard;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/embed.ts":
+/***/ "./src/embed.ts"
 /*!**********************!*\
   !*** ./src/embed.ts ***!
   \**********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -8586,13 +8402,13 @@ var Embed = /** @class */ (function () {
 exports.Embed = Embed;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/errors.ts":
+/***/ "./src/errors.ts"
 /*!***********************!*\
   !*** ./src/errors.ts ***!
   \***********************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -8603,13 +8419,13 @@ exports.EmbedUrlNotSupported = "Embed URL is invalid for this scenario. Please u
 exports.invalidEmbedUrlErrorMessage = "Invalid embed URL detected. Either URL hostname or protocol are invalid. Please use Power BI REST APIs to get the valid URL";
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/factories.ts":
+/***/ "./src/factories.ts"
 /*!**************************!*\
   !*** ./src/factories.ts ***!
   \**************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -8652,13 +8468,13 @@ var routerFactory = function (wpmp) {
 exports.routerFactory = routerFactory;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/page.ts":
+/***/ "./src/page.ts"
 /*!*********************!*\
   !*** ./src/page.ts ***!
   \*********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -9222,13 +9038,13 @@ var Page = /** @class */ (function () {
 exports.Page = Page;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/qna.ts":
+/***/ "./src/qna.ts"
 /*!********************!*\
   !*** ./src/qna.ts ***!
   \********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -9372,13 +9188,13 @@ var Qna = /** @class */ (function (_super) {
 exports.Qna = Qna;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/quickCreate.ts":
+/***/ "./src/quickCreate.ts"
 /*!****************************!*\
   !*** ./src/quickCreate.ts ***!
   \****************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -9561,13 +9377,13 @@ var QuickCreate = /** @class */ (function (_super) {
 exports.QuickCreate = QuickCreate;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/report.ts":
+/***/ "./src/report.ts"
 /*!***********************!*\
   !*** ./src/report.ts ***!
   \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -11135,13 +10951,13 @@ var Report = /** @class */ (function (_super) {
 exports.Report = Report;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/service.ts":
+/***/ "./src/service.ts"
 /*!************************!*\
   !*** ./src/service.ts ***!
   \************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -11768,13 +11584,13 @@ var Service = /** @class */ (function () {
 exports.Service = Service;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/tile.ts":
+/***/ "./src/tile.ts"
 /*!*********************!*\
   !*** ./src/tile.ts ***!
   \*********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -11883,13 +11699,13 @@ var Tile = /** @class */ (function (_super) {
 exports.Tile = Tile;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/util.ts":
+/***/ "./src/util.ts"
 /*!*********************!*\
   !*** ./src/util.ts ***!
   \*********************/
-/***/ (function(__unused_webpack_module, exports) {
+(__unused_webpack_module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -11938,7 +11754,7 @@ var allowedPowerBiHostsRegex = new RegExp(/(.+\.powerbi\.com$)|(.+\.fabric\.micr
 /**
  * @hidden
  */
-var allowedPowerBiHostsSovRegex = new RegExp(/^app\.powerbi\.cn$|^app(\.mil\.|\.high\.|\.)powerbigov\.us$|^app\.powerbi\.eaglex\.ic\.gov$|^app\.powerbi\.microsoft\.scloud$/);
+var allowedPowerBiHostsSovRegex = new RegExp(/^app\.powerbi\.cn$|^app(\.mil\.|\.canaryhigh\.|\.high\.|\.)powerbigov\.us$|^app\.powerbi\.eaglex\.ic\.gov$|^app\.powerbi\.microsoft\.scloud$/);
 /**
  * @hidden
  */
@@ -12193,13 +12009,13 @@ function validateEmbedUrl(embedUrl) {
 exports.validateEmbedUrl = validateEmbedUrl;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/visual.ts":
+/***/ "./src/visual.ts"
 /*!***********************!*\
   !*** ./src/visual.ts ***!
   \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -12567,13 +12383,13 @@ var Visual = /** @class */ (function (_super) {
 exports.Visual = Visual;
 
 
-/***/ }),
+/***/ },
 
-/***/ "./src/visualDescriptor.ts":
+/***/ "./src/visualDescriptor.ts"
 /*!*********************************!*\
   !*** ./src/visualDescriptor.ts ***!
   \*********************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -12993,7 +12809,19 @@ var VisualDescriptor = /** @class */ (function () {
 exports.VisualDescriptor = VisualDescriptor;
 
 
-/***/ })
+/***/ },
+
+/***/ "./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js"
+/*!*******************************************************************************!*\
+  !*** ./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js ***!
+  \*******************************************************************************/
+(module) {
+
+/*! For license information please see windowPostMessageProxy.js.LICENSE.txt */
+!function(e,s){ true?module.exports=s():0}(self,()=>(()=>{"use strict";var e={};return(()=>{var s=e;Object.defineProperty(s,"__esModule",{value:!0}),s.WindowPostMessageProxy=void 0;var r=function(){function e(s){void 0===s&&(s={processTrackingProperties:{addTrackingProperties:e.defaultAddTrackingProperties,getTrackingProperties:e.defaultGetTrackingProperties},isErrorMessage:e.defaultIsErrorMessage,receiveWindow:window,name:e.createRandomString()});var r=this;this.pendingRequestPromises={},this.addTrackingProperties=s.processTrackingProperties&&s.processTrackingProperties.addTrackingProperties||e.defaultAddTrackingProperties,this.getTrackingProperties=s.processTrackingProperties&&s.processTrackingProperties.getTrackingProperties||e.defaultGetTrackingProperties,this.isErrorMessage=s.isErrorMessage||e.defaultIsErrorMessage,this.receiveWindow=s.receiveWindow||window,this.name=s.name||e.createRandomString(),this.logMessages=s.logMessages||!1,this.eventSourceOverrideWindow=s.eventSourceOverrideWindow,this.eventOriginOverride=s.eventOriginOverride,this.suppressWarnings=s.suppressWarnings||!1,this.receivedMessageValidation=s.receivedMessageValidation,this.logMessages&&console.log("new WindowPostMessageProxy created with name: ".concat(this.name," receiving on window: ").concat(this.receiveWindow.document.title)),this.handlers=[],this.windowMessageHandler=function(e){return r.onMessageReceived(e)},this.start()}return e.defaultAddTrackingProperties=function(s,r){return s[e.messagePropertyName]=r,s},e.defaultGetTrackingProperties=function(s){return s[e.messagePropertyName]},e.defaultIsErrorMessage=function(e){return!!e.error},e.createDeferred=function(){var e={resolve:null,reject:null,promise:null},s=new Promise(function(s,r){e.resolve=s,e.reject=r});return e.promise=s,e},e.createRandomString=function(){var e=window.crypto||window.msCrypto,s=new Uint32Array(1);return e.getRandomValues(s),s[0].toString(36).substring(1)},e.prototype.addHandler=function(e){this.handlers.push(e)},e.prototype.removeHandler=function(e){var s=this.handlers.indexOf(e);if(-1===s)throw new Error("You attempted to remove a handler but no matching handler was found.");this.handlers.splice(s,1)},e.prototype.start=function(){var e=this;this.receiveWindow.addEventListener("message",function(s){e.isReceivedMessageValid(s)&&e.windowMessageHandler(s)})},e.prototype.stop=function(){this.receiveWindow.removeEventListener("message",this.windowMessageHandler)},e.prototype.postMessage=function(s,r,n){void 0===n&&(n="*");var i={id:e.createRandomString()};this.addTrackingProperties(r,i),this.logMessages&&(console.log("".concat(this.name," Posting message:")),console.log(JSON.stringify(r,null,"  "))),s.postMessage(r,n);var t=e.createDeferred();return this.pendingRequestPromises[i.id]=t,t.promise},e.prototype.sendResponse=function(e,s,r,n){void 0===n&&(n="*"),this.addTrackingProperties(s,r),this.logMessages&&(console.log("".concat(this.name," Sending response:")),console.log(JSON.stringify(s,null,"  "))),e.postMessage(s,n)},e.prototype.isReceivedMessageValid=function(e){if(this.receivedMessageValidation){var s=this.receivedMessageValidation.expectedMessageSource,r=this.receivedMessageValidation.expectedMessageOrigin;if(s&&e.source!==s)return this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message event from an unexpected source. The message will be discarded."),e),!1;if(r&&e.origin!==r)return this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message event from an unexpected origin. The message will be discarded."),e),!1}return!0},e.prototype.onMessageReceived=function(e){var s=this;this.logMessages&&(console.log("".concat(this.name," Received message:")),console.log("type: ".concat(e.type)),console.log(JSON.stringify(e.data,null,"  ")));var r=this.eventSourceOverrideWindow||e.source,n=this.eventOriginOverride||e.origin||"*";if(r){var i=e.data;if("object"==typeof i){var t,o;try{t=this.getTrackingProperties(i)}catch(e){this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Error occurred when attempting to get tracking properties from incoming message:"),JSON.stringify(i,null,"  "),"Error: ",e)}if(t&&(o=this.pendingRequestPromises[t.id]),o){var a=!0;try{a=this.isErrorMessage(i)}catch(e){console.warn("Proxy(".concat(this.name,") Error occurred when trying to determine if message is consider an error response. Message: "),JSON.stringify(i,null,""),"Error: ",e)}a?o.reject(i):o.resolve(i),delete this.pendingRequestPromises[t.id]}else this.handlers.some(function(e){var o=!1;try{o=e.test(i)}catch(e){s.suppressWarnings||console.warn("Proxy(".concat(s.name,"): Error occurred when handler was testing incoming message:"),JSON.stringify(i,null,"  "),"Error: ",e)}if(o){var a=void 0;try{a=Promise.resolve(e.handle(i))}catch(e){s.suppressWarnings||console.warn("Proxy(".concat(s.name,"): Error occurred when handler was processing incoming message:"),JSON.stringify(i,null,"  "),"Error: ",e),a=Promise.resolve()}return a.then(function(e){if(!e){var o="Handler for message: ".concat(JSON.stringify(i,null,"  ")," did not return a response message. The default response message will be returned instead.");s.suppressWarnings||console.warn("Proxy(".concat(s.name,"): ").concat(o)),e={warning:o}}s.sendResponse(r,e,t,n)}),!0}})||this.suppressWarnings||console.warn("Proxy(".concat(this.name,") did not handle message. Handlers: ").concat(this.handlers.length,"  Message: ").concat(JSON.stringify(i,null,""),"."))}else this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message that was not an object. Discarding message"))}},e.messagePropertyName="windowPostMessageProxy",e}();s.WindowPostMessageProxy=r})(),e})());
+//# sourceMappingURL=windowPostMessageProxy.js.map
+
+/***/ }
 
 /******/ 	});
 /************************************************************************/
@@ -13015,6 +12843,12 @@ exports.VisualDescriptor = VisualDescriptor;
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module

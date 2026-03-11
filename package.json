@@ -1,6 +1,6 @@
 {
   "name": "powerbi-client",
-  "version": "2.23.9",
+  "version": "2.23.10",
   "description": "JavaScript library for embedding Power BI into your apps. Provides service which makes it easy to embed different types of components and an object model which allows easy interaction with these components such as changing pages, applying filters, and responding to data selection.",
   "main": "dist/powerbi.js",
   "types": "dist/powerbi-client.d.ts",
@@ -77,10 +77,10 @@
     "yargs": "^16.1.0"
   },
   "dependencies": {
-    "http-post-message": "^0.2",
+    "http-post-message": "^0.3.0",
     "powerbi-models": "^2.0.1",
     "powerbi-router": "^0.1",
-    "window-post-message-proxy": "^0.2.7"
+    "window-post-message-proxy": "^0.3.0"
   },
   "overrides": {
     "glob-parent": "^6.0.2",
