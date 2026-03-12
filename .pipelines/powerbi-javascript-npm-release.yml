@@ -77,6 +77,7 @@ extends:
 
     - stage: Prod_Approval
       displayName: Approval Service
+      trigger: manual
       dependsOn: []
       variables:
         ob_release_environment: Production
@@ -91,14 +92,14 @@ extends:
           ob_sdl_cg_failOnAlert: false
           ob_sdl_publishLogs_enabled: true
           ob_release_usedeploymentjob: true
-          ob_deploymentjob_environment: Prod_PowerBIJavascript_NPM
-          ob_release_environment: production
+          ob_deploymentjob_environment: R2D-Approval
+          ob_release_environment: Production
 
     - stage: Release_External
       displayName: Release NPM external
       dependsOn: [Prod_Approval]
-      condition: succeeded()
-
+      variables:
+        ob_release_environment: Production
       jobs:
       - job: PublishToNPMExternal
         displayName: Publish to NPM External
@@ -131,7 +132,7 @@ extends:
             contentsource: 'Folder'
             folderlocation: '$(Pipeline.Workspace)\PublishedNpmArtifact\outputs\package\tgz-package'
             waitforreleasecompletion: true
-            owners: 'alihamud@microsoft.com'
+            owners: 'alonyeshurun@microsoft.com'
             approvers: 'alonyeshurun@microsoft.com'
             serviceendpointurl: 'https://api.esrp.microsoft.com'
             mainpublisher: 'ESRPRELPACMAN'
