@@ -1,8 +1,0 @@
-name: powerbi-javascript inventory config
-description: Inventory-as-code configuration for the powerbi-javascript repository
-resource: repository
-configuration:
-  inventoryConfig:
-    schemaVersion: 0
-    publishInventory: false
-    areasOnly: true
