@@ -59,3 +59,9 @@ This project welcomes contributions and suggestions. Most contributions require 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments
+
+## Support
+
+- **Feature Requests:** Submit your ideas and suggestions to the [Fabric Ideas Portal](https://ideas.fabric.microsoft.com/), where you can also vote on ideas from other developers.
+- **Bug Reports and Technical Assistance:** Visit the [Fabric Developer Community Forum](https://community.fabric.microsoft.com/t5/Developer/bd-p/Developer). Our team and community experts are ready to assist you.
+- **Additional Support:** Contact your account manager or reach out to the [Fabric Support Team](https://support.fabric.microsoft.com/en-us/support/).
